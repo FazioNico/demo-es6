@@ -39,10 +39,10 @@
      let hour = new Date().getHours()
      console.log(hour)
      switch (true) {
-       case (hour > 18 && hour < 22):
+       case (hour >= 18 && hour < 22):
          return 'Good Evening'
          break;
-       case (hour > 22 || hour < 6):
+       case (hour >= 22 || hour < 6):
          return 'Good Night'
          break;
        case (hour > 6 && hour < 12):
