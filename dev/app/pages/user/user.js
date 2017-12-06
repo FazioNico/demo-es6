@@ -17,7 +17,6 @@
    }
 
    initUI(){
-     this.app.innerHTML = ``;
      this.app.innerHTML = `
        <section>
          <h1 id="time"></h1>
