@@ -22,6 +22,7 @@
      let skeleton = homeSkeleton({
        title:this.title
      })
+     this.app.innerHTML = ``;
      this.app.insertAdjacentHTML('beforeend', skeleton)
    }
 

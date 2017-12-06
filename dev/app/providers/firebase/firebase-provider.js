@@ -8,7 +8,6 @@ export class FirebaseProvider {
     firebase.initializeApp(CONFIG);
     // init fb.auth()
     this.auth = firebase.auth();
-
     //console.log(firebase.database())
   }
 
@@ -35,4 +34,5 @@ export class FirebaseProvider {
                 alert(errorMessage)
             });
   }
+
 }
