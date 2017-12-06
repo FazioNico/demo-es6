@@ -11,7 +11,6 @@
      this.app = app
      this.fb = fb
      this.userData = UserData
-     this.time = new Date();
      this.initUI()
      this.loadEventUI()
      this.displayTime()
@@ -29,6 +28,7 @@
    }
 
    loadEventUI(){
+     // event logout
      document.getElementById('logout').addEventListener('click', e=> {
        this.fb.auth.signOut()
      })
@@ -36,26 +36,25 @@
 
    displayTime(){
      let timeElement = document.getElementById('time')
+     if(!timeElement){
+       return
+     }
+     // add date
+     timeElement.innerHTML = this.getTime(new Date())
      // some css with JS for time txt
-     timeElement.innerHTML = this.getTime(this.time)
      timeElement.style.fontSize = '10rem';
      timeElement.style.margin = '0rem';
      timeElement.style.textShadow = '0px 0px 50px rgba(0, 0, 0, 0.21)';
      // run interval
-     setInterval(()=>{
-       // asigne a new Date()
-       this.time = new Date();
-       // replace innerHTML of time element
-       timeElement.innerHTML = this.getTime(this.time)
-     },1000)
+     setTimeout(()=>this.displayTime(),1000)
    }
 
    getTime(time){
-     let timeUTC = time ;
+     let timeUTC = time;
      let timeArray = time.toLocaleTimeString().split(':');
 
      return    `
-     <time datetime="${(timeUTC.getFullYear() < 10)?'0'+timeUTC.getFullYear():timeUTC.getFullYear()}-${(timeUTC.getMonth() < 10)?'0'+timeUTC.getMonth():timeUTC.getMonth()}-${(timeUTC.getDate() < 10)?'0'+timeUTC.getDate():timeUTC.getDate()} ${(timeUTC.getHours() < 10)?'0'+timeUTC.getHours():timeUTC.getHours()}:${(timeUTC.getMinutes() < 10)?'0'+timeUTC.getMinutes():timeUTC.getMinutes()}:${(timeUTC.getSeconds() < 10)?'0'+timeUTC.getSeconds():timeUTC.getSeconds()}">
+     <time datetime="-${(timeUTC.getMonth() < 10)?'0'+timeUTC.getMonth():timeUTC.getMonth()}-${(timeUTC.getDate() < 10)?'0'+timeUTC.getDate():timeUTC.getDate()} ${(timeUTC.getHours() < 10)?'0'+timeUTC.getHours():timeUTC.getHours()}:${(timeUTC.getMinutes() < 10)?'0'+timeUTC.getMinutes():timeUTC.getMinutes()}:${(timeUTC.getSeconds() < 10)?'0'+timeUTC.getSeconds():timeUTC.getSeconds()}">
        ${timeArray[0]}:${timeArray[1]}:${timeArray[2]}
      </time>
      `;
