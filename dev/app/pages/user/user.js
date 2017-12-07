@@ -7,18 +7,17 @@
  */
 
  import { TimerComponent } from '../../components/timer/timer-component';
- import { UnsplashProvider } from '../../providers/unsplash/unsplash';
+ import { BackgroundComponent } from '../../components/background/background-component';
 
  export class UserPage {
    constructor(app, fb, UserData) {
      this.app = app
      this.fb = fb
-     this.unsplash = new UnsplashProvider()
      this.userData = UserData
-     this.loadBackground()
      this.initUI()
      this.loadEventUI()
      new TimerComponent()
+     new BackgroundComponent()
    }
 
    initUI(){
@@ -29,47 +28,6 @@
          <button id="logout">logout</button>
        </section>
      `;
-   }
-
-   loadBackground(){
-
-     this.unsplash
-         .getRandomImg()
-         .then(res => {
-           // add img to section bg
-           document.querySelector('section').style.background = `url(${res[0].urls.regular}) center center no-repeat`
-           document.querySelector('section').style.backgroundSize = `cover`
-           return res
-         })
-         .then(res => {
-           console.log(res[0].user)
-           // add user data to HTML
-           document.querySelector('section').insertAdjacentHTML('beforeend',`
-              <footer>
-                <p>Photo by ${res[0].user.name}</p>
-              </footer>
-           `)
-           return res
-         })
-         .then(res => {
-           // add img dwn btn
-           document.querySelector('section').insertAdjacentHTML('afterbegin', `
-              <button id="download">download</button>
-           `)
-           document.getElementById('download').addEventListener('click', _=> {
-             window.open(res[0].links.download, true)
-           })
-           return res[0].urls.regular
-         })
-         .then(imgUrl=> {
-           // stage img load to rmv body opacity
-           let img = new Image();
-           img.src = imgUrl;
-           img.addEventListener('load', _=> {
-             document.body.style.opacity = 1;
-           })
-         })
-         .catch(err => alert(err.toString()))
    }
 
    loadEventUI(){
