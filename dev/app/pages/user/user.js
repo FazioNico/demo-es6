@@ -7,13 +7,16 @@
  */
 
  import { TimerComponent } from '../../components/timer/timer-component';
+ import { UnsplashProvider } from '../../providers/unsplash/unsplash';
 
  export class UserPage {
    constructor(app, fb, UserData) {
      this.app = app
      this.fb = fb
+     this.unsplash = new UnsplashProvider()
      this.userData = UserData
      this.initUI()
+     this.loadBackground()
      this.loadEventUI()
      new TimerComponent()
    }
@@ -28,6 +31,12 @@
      `;
    }
 
+   loadBackground(){
+     this.unsplash
+         .getRandomImg()
+         .then(res => console.log(res))
+         .catch(err => alert(err.toString()))
+   }
    loadEventUI(){
      // event logout
      document.getElementById('logout').addEventListener('click', e=> {
