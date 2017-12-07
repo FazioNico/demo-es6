@@ -23,5 +23,5 @@ body {
 
 html, body, app, section {
   display: block;
-  height: 100vh;
+  height: 100%;
 }
