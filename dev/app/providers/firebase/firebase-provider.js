@@ -4,13 +4,16 @@ import { CONFIG } from './config'
 
 export class FirebaseProvider {
   constructor() {
+    this.path = ''
     // init fb
     firebase.initializeApp(CONFIG);
     // init fb.auth()
     this.auth = firebase.auth();
+    this.database = firebase.database();
     //console.log(firebase.database())
   }
 
+  // Auth() methode
   createEmailAccount(email, password){
     this.auth
             .createUserWithEmailAndPassword(email, password)
@@ -22,7 +25,6 @@ export class FirebaseProvider {
                 alert(errorMessage)
             });
   }
-
   logInEmailAccount(email, password){
     this.auth
             .signInWithEmailAndPassword(email, password)
@@ -33,6 +35,13 @@ export class FirebaseProvider {
                 let errorMessage = error.message;
                 alert(errorMessage)
             });
+  }
+
+  // database() Methodes
+  firebasePush(uid,datas){
+    this.database.ref(this.path)
+            .child(uid)
+            .push(datas)
   }
 
 }

@@ -27,6 +27,13 @@
          <h2>${this.greetings()} ${this.userData.email.split('@')[0]}</h2>
          <button id="logout">logout</button>
        </section>
+       <aside>
+        <form>
+          <input id="title" type="text" placeholder="title">
+          <input id="link" type="url" placeholder="link url">
+          <button>add</button>
+        </form>
+       </aside>
      `;
    }
 
@@ -34,6 +41,17 @@
      // event logout
      document.getElementById('logout').addEventListener('click', e=> {
        this.fb.auth.signOut()
+     })
+     // event submit
+     document.forms[0].addEventListener('submit', e=> {
+        e.preventDefault()
+        let title = document.getElementById('title').value
+        let link = document.getElementById('link').value
+        this.fb.path = 'userLinks'
+        this.fb.firebasePush(this.userData.uid, {
+          title,
+          link
+        })
      })
    }
 
