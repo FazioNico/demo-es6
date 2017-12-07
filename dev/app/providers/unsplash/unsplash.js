@@ -18,7 +18,7 @@ export class UnsplashProvider{
           // so check the status
           if (req.status == 200) {
             // Resolve the promise with the response text
-            resolve(req.responseText);
+            resolve(JSON.parse(req.responseText));
           }
           else {
             // Otherwise reject with the status text

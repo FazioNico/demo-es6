@@ -15,8 +15,8 @@
      this.fb = fb
      this.unsplash = new UnsplashProvider()
      this.userData = UserData
-     this.initUI()
      this.loadBackground()
+     this.initUI()
      this.loadEventUI()
      new TimerComponent()
    }
@@ -32,11 +32,27 @@
    }
 
    loadBackground(){
+
      this.unsplash
          .getRandomImg()
-         .then(res => console.log(res))
+         .then(res => {
+
+           console.log(res[0].urls.regular)
+           document.querySelector('section').style.background = `url(${res[0].urls.regular}) center center no-repeat`
+           document.querySelector('section').style.backgroundSize = `cover`
+
+           return res[0].urls.regular
+         })
+         .then(imgUrl=> {
+           let img = new Image();
+           img.src = imgUrl;
+           img.addEventListener('load', _=> {
+             document.body.style.opacity = 1;
+           })
+         })
          .catch(err => alert(err.toString()))
    }
+
    loadEventUI(){
      // event logout
      document.getElementById('logout').addEventListener('click', e=> {

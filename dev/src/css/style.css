@@ -1,3 +1,10 @@
 body {
+  opacity: 0;
   background: coral;
+  transition: 300ms all ease;
+}
+
+html, body, app, section {
+  display: block;
+  height: 100vh;
 }
