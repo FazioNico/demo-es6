@@ -38,6 +38,10 @@ export class FirebaseProvider {
   }
 
   // database() Methodes
+  read(path){
+    return this.database.ref(path)
+  }
+
   firebasePush(uid,datas){
     this.database.ref(this.path)
             .child(uid)
