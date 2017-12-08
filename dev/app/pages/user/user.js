@@ -25,6 +25,7 @@
     this.fb.read('userLinks')
            .child(this.userData.uid)
            .on('child_added', (snpashot)=>this.addElement(snpashot))
+
    }
    addElement(snpashot){
      console.log(snpashot);
@@ -37,7 +38,8 @@
       <li>
         <input type="text" name="title" value="${snpashot.val().title}"/>
         <input type="url" name="link" value="${snpashot.val().link}"/>
-        <button>x</button>
+        <button class="save">save</button>
+        <button class="del">x</button>
       </li>
      `)
    }
@@ -78,6 +80,10 @@
           title,
           link
         })
+     })
+     // add event listener to UL#editable
+     this.app.querySelector('ul#editableList').addEventListener('click', e=> {
+       console.log(e)
      })
    }
 
