@@ -8,6 +8,8 @@ var removeHtmlComments  = require('gulp-remove-html-comments');
 var browserSync = require('browser-sync').create();
 var reload = browserSync.reload;
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var buffer = require("vinyl-buffer");
 
 // Config of project folders
 var config = {
@@ -80,6 +82,21 @@ gulp.task('css', function(){
   .pipe(reload({stream:true}));
 })
 
+// uglify JS
+gulp.task('compress', function(){
+   return browserify({
+     entries: './dev/app/app.js'
+   })
+   .transform(babelify.configure({
+     presets : ["env"]
+   }))
+   .bundle()
+   .pipe(source("bundle.js"))
+   .pipe(buffer())
+   .pipe(uglify())
+   .pipe(gulp.dest(config.desDir + '/js'))
+
+})
 // Task to run local server
 gulp.task("startServer",  function() {
   browserSync.init({
@@ -113,6 +130,14 @@ gulp.task("run",[
   'fonts-dep' // fonts files
 ]);
 
+gulp.task("prod",[
+  'compress', // js files
+  'copy-html', // html files
+  'copyStaticFiles', // static fies
+  'js-dep', // js dependencies files
+  'css', // css files
+  'fonts-dep' // fonts files
+]);
 // default gulp task runner
 gulp.task('default', ['run'], function() {
     gulp.start('startServer', 'watch');

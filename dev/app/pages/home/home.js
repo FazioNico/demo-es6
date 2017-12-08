@@ -19,6 +19,7 @@
    }
 
    initUI(){
+     document.body.style.opacity = 1;
      let skeleton = homeSkeleton({
        title:this.title
      })
