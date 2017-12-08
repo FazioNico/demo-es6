@@ -22,16 +22,22 @@
    }
 
    readDatabase(){
+    // read child_added
     this.fb.read('userLinks')
            .child(this.userData.uid)
            .on('child_added', (snpashot)=>this.addElement(snpashot))
+
+    // read child_changed
+    this.fb.read('userLinks')
+           .child(this.userData.uid)
+           .on('child_changed', (snpashot)=>this.updateElement(snpashot))
 
    }
    addElement(snpashot){
      console.log(snpashot);
      //add button
      this.app.querySelector('#btnList').insertAdjacentHTML('afterbegin', `
-      <button id="${snpashot.key}">${snpashot.val().title}</button>
+      <button data-id="${snpashot.key}">${snpashot.val().title}</button>
      `)
      // add element to editable liste
      this.app.querySelector('ul#editableList').insertAdjacentHTML('afterbegin', `
@@ -44,6 +50,14 @@
      `)
    }
 
+   updateElement(snpashot){
+     //update input editable liste (optional)
+     document.querySelector(`#${snpashot.key} input[name=title]`).value = snpashot.val().title
+     document.querySelector(`#${snpashot.key} input[name=link]`).value = snpashot.val().link
+     // update btn clicable list
+     document.querySelector(`#btnList button[data-id=${snpashot.key}]`).innerHTML = snpashot.val().title
+   }
+   
    initUI(){
      this.app.innerHTML = `
        <section>
