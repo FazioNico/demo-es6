@@ -10,6 +10,7 @@ var reload = browserSync.reload;
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var buffer = require("vinyl-buffer");
+var javascriptObfuscator = require('gulp-javascript-obfuscator');
 
 // Config of project folders
 var config = {
@@ -94,6 +95,7 @@ gulp.task('compress', function(){
    .pipe(source("bundle.js"))
    .pipe(buffer())
    .pipe(uglify())
+   .pipe(javascriptObfuscator())
    .pipe(gulp.dest(config.desDir + '/js'))
 
 })
