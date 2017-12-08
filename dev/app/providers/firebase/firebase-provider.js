@@ -48,4 +48,16 @@ export class FirebaseProvider {
             .push(datas)
   }
 
+  firebaseUpdate(key,datas){
+    this.database.ref(this.path)
+            .child(key)
+            .update(datas)
+  }
+
+  firebaseSet(key,datas){
+    this.database.ref(this.path)
+            .child(key)
+            .set(datas)
+  }
+
 }

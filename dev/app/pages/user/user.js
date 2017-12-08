@@ -35,7 +35,7 @@
      `)
      // add element to editable liste
      this.app.querySelector('ul#editableList').insertAdjacentHTML('afterbegin', `
-      <li>
+      <li id="${snpashot.key}">
         <input type="text" name="title" value="${snpashot.val().title}"/>
         <input type="url" name="link" value="${snpashot.val().link}"/>
         <button class="save">save</button>
@@ -83,7 +83,26 @@
      })
      // add event listener to UL#editable
      this.app.querySelector('ul#editableList').addEventListener('click', e=> {
-       console.log(e)
+
+       if(e.target.nodeName !== 'BUTTON'){
+         return
+       }
+       let li = e.target.closest('li')
+       if([...e.target.classList].includes('save')) {
+         // save action
+        console.log(li.id, document.querySelector(`#${li.id} input[name=title]`).value);
+        this.fb.path = `userLinks/${this.userData.uid}`;
+        this.fb.firebaseUpdate(li.id,{
+          title: document.querySelector(`#${li.id} input[name=title]`).value,
+          link: document.querySelector(`#${li.id} input[name=link]`).value,
+        })
+       }
+       else {
+          //delete action;
+          this.fb.path = `userLinks/${this.userData.uid}`;
+          this.fb.firebaseSet(li.id,null)
+       }
+       console.log([...e.target.classList].includes('save'))
      })
    }
 
