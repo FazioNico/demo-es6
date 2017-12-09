@@ -64,5 +64,8 @@ aside form {
 }
 #editableList input {
     display: inline;
-    width: 40%;
+    width: 35%;
+}
+#editableList li input:last-of-type {
+      margin-right: 6%;
 }

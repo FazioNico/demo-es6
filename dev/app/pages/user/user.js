@@ -48,8 +48,8 @@
       <li id="${snpashot.key}">
         <input type="text" name="title" value="${snpashot.val().title}"/>
         <input type="url" name="link" value="${snpashot.val().link}"/>
-        <button class="save">save</button>
-        <button class="del">x</button>
+        <button class="save waves-effect waves-light btn">save</button>
+        <button class="del waves-effect waves-light btn">x</button>
       </li>
      `)
    }
@@ -81,7 +81,7 @@
         <form>
           <input id="title" type="text" placeholder="title">
           <input id="link" type="url" placeholder="link url">
-          <button>add</button>
+          <button class="waves-effect waves-light btn">add</button>
         </form>
        </aside>
      `;
