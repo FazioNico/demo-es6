@@ -70,9 +70,11 @@
    initUI(){
      this.app.innerHTML = `
        <section>
+        <div id="container">
          <h1 id="time"></h1>
          <h2>${this.greetings()} ${this.userData.email.split('@')[0]}</h2>
          <div id="btnList"></div>
+        </div>
        </section>
        <span id="settings">Settings</span>
        <aside>
