@@ -41,7 +41,7 @@ export class BackgroundComponent {
     .then(res => {
       // add img dwn btn
       this.content.insertAdjacentHTML('afterbegin', `
-      <button id="download">download</button>
+      <i id="download" class="material-icons">file_download</i>
       `)
       document.getElementById('download').addEventListener('click', _=> {
         window.open(res[0].links.download, true)
