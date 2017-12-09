@@ -74,8 +74,8 @@
          <h2>${this.greetings()} ${this.userData.email.split('@')[0]}</h2>
          <div id="btnList"></div>
        </section>
+       <span id="settings">Settings</span>
        <aside>
-        <span id="settings">Settings</span>
         <p>You are connected as <b>${this.userData.email}</b>. Want to  <i id="logout">logout</i>
         <ul id="editableList"></ul>
         <form>
@@ -131,6 +131,7 @@
      // add event to setting btn
      this.app.querySelector('#settings').addEventListener('click', e=> {
         this.app.querySelector('aside').classList.toggle('active')
+        this.app.querySelector('#settings').classList.toggle('active')
      })
    }
 
