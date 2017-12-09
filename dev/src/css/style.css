@@ -19,7 +19,7 @@ h1, h2, time, p {
   box-shadow: none;
 }
 #container {
-background: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  background: radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
 }
 app {
   display: table;
@@ -81,4 +81,15 @@ aside form {
 }
 #editableList li input:last-of-type {
       margin-right: 6%;
+}
+#download {
+  position: absolute;
+  top:10px;
+  right: 10px;
+  color: #fff;
+}
+footer {
+  position:absolute;
+  bottom: 0px;
+  padding: 0px 10px;
 }
