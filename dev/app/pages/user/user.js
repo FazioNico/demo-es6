@@ -72,11 +72,11 @@
        <section>
          <h1 id="time"></h1>
          <h2>${this.greetings()} ${this.userData.email.split('@')[0]}</h2>
-         <button id="logout">logout</button>
          <div id="btnList"></div>
        </section>
        <aside>
         <span id="settings">Settings</span>
+        <p>You are connected as <b>${this.userData.email}</b>. Want to  <i id="logout">logout</i>
         <ul id="editableList"></ul>
         <form>
           <input id="title" type="text" placeholder="title">
