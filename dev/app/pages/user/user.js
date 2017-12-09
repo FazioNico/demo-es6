@@ -31,6 +31,10 @@
     this.fb.read('userLinks')
            .child(this.userData.uid)
            .on('child_changed', (snpashot)=>this.updateElement(snpashot))
+    // read child_changed
+    this.fb.read('userLinks')
+           .child(this.userData.uid)
+           .on('child_removed', (snpashot)=>this.removeElement(snpashot))
 
    }
    addElement(snpashot){
@@ -56,6 +60,11 @@
      document.querySelector(`#${snpashot.key} input[name=link]`).value = snpashot.val().link
      // update btn clicable list
      document.querySelector(`#btnList button[data-id=${snpashot.key}]`).innerHTML = snpashot.val().title
+   }
+
+   removeElement(snpashot){
+     let el = document.querySelector(`#${snpashot.key}`);
+     el.parentElement.removeChild(el)
    }
 
    initUI(){
