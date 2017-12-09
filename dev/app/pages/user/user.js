@@ -41,7 +41,7 @@
      console.log(snpashot);
      //add button
      this.app.querySelector('#btnList').insertAdjacentHTML('afterbegin', `
-      <button data-id="${snpashot.key}">${snpashot.val().title}</button>
+      <a href="${snpashot.val().link}" target="_blank" class="waves-effect waves-light btn btnlight" data-id="${snpashot.key}">${snpashot.val().title}</button>
      `)
      // add element to editable liste
      this.app.querySelector('ul#editableList').insertAdjacentHTML('afterbegin', `

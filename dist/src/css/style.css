@@ -27,6 +27,13 @@ html, body, app, section {
   overflow: hidden;
 }
 
+.btnlight {
+  border: solid 1px #fff!important;
+  background: transparent!important;
+  margin: 5px;
+  box-shadow: none;
+}
+
 app {
   display: table;
   width: 100%;
@@ -48,6 +55,7 @@ aside {
   overflow: scroll;
   transition: 300ms all linear;
   transform: translateY(100%);
+  z-index: 9999;
 }
 aside.active {
   bottom: 0%;
@@ -67,6 +75,7 @@ aside.active {
   left: 50%;
   margin-left: -100px;
   transition: 300ms all linear;
+  z-index: 9999;
 }
 #settings.active {
   transform: translateY(-450px);
