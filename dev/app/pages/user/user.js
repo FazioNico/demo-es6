@@ -57,7 +57,7 @@
      // update btn clicable list
      document.querySelector(`#btnList button[data-id=${snpashot.key}]`).innerHTML = snpashot.val().title
    }
-   
+
    initUI(){
      this.app.innerHTML = `
        <section>
@@ -67,6 +67,7 @@
          <div id="btnList"></div>
        </section>
        <aside>
+        <span id="settings">Settings</span>
         <ul id="editableList"></ul>
         <form>
           <input id="title" type="text" placeholder="title">
@@ -117,6 +118,10 @@
           this.fb.firebaseSet(li.id,null)
        }
        console.log([...e.target.classList].includes('save'))
+     })
+     // add event to setting btn
+     this.app.querySelector('#settings').addEventListener('click', e=> {
+        this.app.querySelector('aside').classList.toggle('active')
      })
    }
 
