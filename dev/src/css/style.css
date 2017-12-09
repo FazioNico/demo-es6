@@ -24,6 +24,7 @@ aside {
   left:0px;
   width: 100%;
   background: #333;
+  padding: 40px 60px;
   transition: 300ms all linear;
   transform: translateY(100%);
 }
@@ -44,4 +45,9 @@ aside.active {
   top: -40px;
   left: 50%;
   margin-left: -100px;
+}
+
+#editableList input {
+    display: inline;
+    width: 40%;
 }
