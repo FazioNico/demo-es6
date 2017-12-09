@@ -59,12 +59,16 @@
      document.querySelector(`#${snpashot.key} input[name=title]`).value = snpashot.val().title
      document.querySelector(`#${snpashot.key} input[name=link]`).value = snpashot.val().link
      // update btn clicable list
-     document.querySelector(`#btnList button[data-id=${snpashot.key}]`).innerHTML = snpashot.val().title
+     document.querySelector(`#btnList a[data-id=${snpashot.key}]`).innerHTML = snpashot.val().title
    }
 
    removeElement(snpashot){
+     // rmv editableList
      let el = document.querySelector(`#${snpashot.key}`);
      el.parentElement.removeChild(el)
+     // rmv btn link
+     let btn = document.querySelector(`#btnList a[data-id=${snpashot.key}]`)
+     btn.parentElement.removeChild(btn)
    }
 
    initUI(){
